@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  /* padding: 0; */
+}
+h1.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+#app-project {
+  max-width: 600px;
+  margin: auto;
+}
+form {
+  border: 1px solid red;
+  border-radius: 3px;
+  background-color: whitesmoke;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.form-control {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.form-control label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-control input,
+.form-control textarea {
+  padding: 10px 7px;
+}
+
+form button {
+  font-size: large;
+  padding: 10px 15px;
+  color: white;
+  background-color: red;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.active-project {
+  border: 1px solid red;
+  --bg-color: red;
+  margin-bottom: 20px;
+}
+
+.finished-project {
+  border: 1px solid blue;
+  --bg-color: blue;
+}
+
+section.active-project.finished-project {
+  text-align: center;
+}
+
+section header {
+  background-color: var(--bg-color);
+  color: white;
+  padding: 10px;
+  margin-bottom: 30px;
+}

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typescript 101</title>
+
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <h1 class="title">Project Manager</h1>
+
+    <div id="app-react"></div>
+    <div id="app"></div>
+    <div id="app-project"></div>
+
+    <template id="project-input">
+      <form>
+        <div class="form-control">
+          <label for="title">Title</label
+          ><input type="text" id="title" focus="true" placeholder="Title" />
+        </div>
+        <div class="form-control">
+          <label for="description">Description</label
+          ><textarea
+            id="description"
+            rows="10"
+            placeholder="Description"
+          ></textarea>
+        </div>
+        <div class="form-control">
+          <label for="people">People</label
+          ><input
+            type="number"
+            min="1"
+            max="10"
+            id="people"
+            placeholder="No. of people"
+          />
+        </div>
+        <button type="submit">Add Project</button>
+      </form>
+    </template>
+
+    <template id="project-list">
+      <section>
+        <header><h2></h2></header>
+        <ul></ul>
+      </section>
+    </template>
+
+    <script>
+      "use strict";
+
+      window.a = "global a";
+      var obj = {
+        a: "inside obj",
+        norm() {
+          console.log(this);
+        },
+        func: () => this.a,
+        method: function () {
+          return {
+            a: "inside method",
+            normal: function () {
+              return this.a;
+            },
+            arrowFunction: () => this.a,
+          };
+        },
+      };
+
+      const next = () => {
+        return this.a;
+      };
+      const normal = function () {
+        this.b = "bb";
+        return 78;
+      };
+      class Fat {
+        a = 98;
+        b = "string b";
+
+        method = () => {
+          console.log(this);
+        };
+
+        reg() {
+          console.log(this);
+        }
+
+        constructor() {
+          this.reg = this.reg.bind(this);
+        }
+      }
+      const fat = new Fat();
+      const refFat = fat.reg;
+      const bound = normal.bind(this);
+
+      console.log(obj.func());
+      console.log(obj.method().normal());
+      console.log(obj.method().arrowFunction());
+      const passhere = obj.method().normal;
+      // console.log(passhere());
+
+      console.log(next());
+      console.log(new normal());
+      console.log(fat);
+      refFat.call({});
+      const refNorm = obj.norm;
+      refNorm.apply(null);
+
+      // console.log(document);
+      // console.log(window);
+      // const o = {
+      //   a: "abu",
+      //   func: function () {
+      //     // "use strict";
+      //     return this;
+      //   }.bind(this),
+      // };
+      // console.log(o.func());
+      // const ref = o.func;
+      // console.log(ref.call("fattylee hackz"));
+      // function fun() {
+      //   // "use strict";
+      //   // gay = "fools";
+      //   return this;
+      // }
+      // console.log(new fun());
+      // console.log(gay);
+      // console.log(fun.call(2));
+      // console.log(fun.bind(this)());
+      // console.log(fun.apply(undefined));
+      // console.log(fun());
+      // const sum = 011 + 1;
+      // console.log(sum);
+      // const fs = "h";
+      // fs.make = 32;
+
+      // function f(a) {
+      //   // "use strict";
+      //   a = 89;
+      //   return [a, arguments[0], arguments.callee];
+      // }
+      // const [a, b, c] = f(14);
+      // console.log(a, b);
+      // console.dir(c);
+      // // console.assert(false);
+
+      // console.log(delete Object.prototype);
+      // nahs = 78;
+      // undefined = 89;
+      // Infinity = 12;
+      // const obj1 = {};
+      // Object.defineProperty(obj1, "no_write", {
+      //   configurable: false,
+      //   writable: false,
+      //   enumerable: true,
+      //   value: 89,
+      // });
+      // obj1.no_write = 90;
+      // console.log(obj1.no_write);
+      var bar = "GLOBAL BAR!!!";
+      // console.log(this === window);
+      // const obj2 = { a: 1, a: 90 };
+      // Object.seal(obj2);
+      // Object.preventExtensions(obj2);
+
+      // Object.freeze(obj2);
+      // obj2.a = 12;
+      // console.log(obj2);
+
+      // console.log(sum(1, 2, 3));
+      // function sum(a, a, c) {
+      //   // "use strict";
+      //   console.log(arguments);
+      //   return a + a + c;
+      // }
+
+      const ob = {
+        name: "inside name",
+        age: 11,
+        getInfo: function () {
+          // console.log(this);
+
+          function inner() {
+            // console.log(this);
+
+            function innerIner() {
+              // console.log(this);
+            }
+            innerIner();
+          }
+          inner();
+        },
+      };
+      // ob.getInfo();
+      const ff = function () {
+        "use strict";
+        // this.lost = "lost";
+        // const this = {};
+        console.log(this);
+        console.log(window);
+        function inner() {
+          console.log(this.lost);
+        }
+        inner.call(this);
+      };
+      // const f = ff.call(this);
+      // console.log(f);
+      var foo = "bar";
+      // console.log(this.foo);
+      function f2() {
+        "use strict";
+
+        return this;
+      }
+      // console.log(f2.call(window));
+      class A {
+        a = "base a";
+      }
+      class B extends A {
+        b = "ext b";
+        constructor() {
+          // super();
+          return { a: "ab" };
+        }
+      }
+      // console.log(new B());
+      function phase() {
+        console.log(Object.prototype.toString.call(this));
+      }
+      // phase();
+      // phase.call(null);
+      // phase.call(true);
+      // phase.call(4);
+      // phase.apply(this);
+      // const o = {
+      //   a: "aa",
+      //   func() {
+      //     console.log(this);
+      //     const b = () => {
+      //       console.log(this);
+      //       function c() {
+      //         console.log(this);
+      //       }
+      //       c();
+      //     };
+      //     b();
+      //     return this.a;
+      //   },
+      // };
+      // o.func();
+      // var a = "lost";
+      // console.log(o.func.apply({ a: "zerty" }));
+    </script>
+    <script src="../dist/bundle-typescript.js"></script>
+    <script src="../dist/bundle-react.js"></script>
+  </body>
+</html>
